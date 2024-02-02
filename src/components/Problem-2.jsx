@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
@@ -44,25 +45,27 @@ const Problem2 = () => {
     fetchData();
   }, []);
 
-  const handleShowModalA = () =>{
-    setShowModalA(false)
-    setShowModalA(true)
-
-  }
+  const handleShowModalA = () => {
+    setShowModalA(false);
+    setShowModalA(true);
+  };
   const handleCloseModalA = () => setShowModalA(false);
-  const modalOff = () =>{
+  const modalOff = () => {
     setShowModalA(false);
     setShowModalB(false);
-  } 
+  };
   const handleCloseModalA1 = () => setShowModalA1(false);
 
-  const handleShowModalB = () =>{
+  const handleShowModalB = () => {
     setShowModalB(true);
-    setShowModalA(false)
-
-  } 
+    setShowModalA(false);
+  };
 
   const handleCloseModalB = () => setShowModalB(false);
+
+  const handleCheckboxChange = () =>{
+    console.log("click")
+  }
 
   return (
     <div className="container">
@@ -93,6 +96,17 @@ const Problem2 = () => {
           <Modal.Title>Modal A</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <div>
+            <Form>
+              <Form.Check
+                type="switch"
+                id="custom-switch"
+                label="Check this switch"
+                onChange={handleCheckboxChange}
+              />
+            </Form>
+          </div>
+
           <div>
             {contract?.map((data, index) => (
               <ul key={index}>
@@ -128,14 +142,25 @@ const Problem2 = () => {
         </Modal.Footer>
       </Modal>
 
-
-
       {/* Modal B */}
       <Modal show={showModalB} onHide={handleCloseModalB}>
         <Modal.Header closeButton>
           <Modal.Title>Modal B</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
+        <div>
+            <Form>
+              <Form.Check
+                  onChange={handleCheckboxChange}
+                type="switch"
+                id="custom-switch"
+                label="Check this switch"
+              />
+            </Form>
+          </div>
+
+
           <div>
             {usContact?.map((data, index) => (
               <ul key={index}>
@@ -145,7 +170,7 @@ const Problem2 = () => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-        <Button
+          <Button
             style={{ backgroundColor: "#46139f" }}
             onClick={handleShowModalA}
           >
